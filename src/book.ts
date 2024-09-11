@@ -41,11 +41,8 @@ export class Book {
     }
 }
 
-export type BookObject = CreateBookObject & {
+export type BookObject = {
     id: number;
-}
-
-export type CreateBookObject = {
     author: string,
     title: string,
     publisher: string,
@@ -53,6 +50,8 @@ export type CreateBookObject = {
     availability: boolean,
     rating: number,
 }
+
+export type CreateBookObject = Omit<BookObject, 'id'>;
 
 export type SearchCriteria = Pick<BookObject, 'author' | 'section' | 'availability'>;
 
