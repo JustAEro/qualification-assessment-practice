@@ -13,25 +13,25 @@ export class Catalog {
                 return true;
             }
 
-            const searchKeys = new Set<keyof SearchCriteria>();
+            const searchKeys: (keyof SearchCriteria)[] = [];
 
             if ('author' in query) {
-                searchKeys.add('author');
+                searchKeys.push('author');
             }
 
             if ('section' in query) {
-                searchKeys.add('section');
+                searchKeys.push('section');
             }
             
             if ('availability' in query) {
-                searchKeys.add('availability')
+                searchKeys.push('availability')
             }
 
-            if (searchKeys.size === 0) {
+            if (searchKeys.length === 0) {
                 return true;
             }
 
-            return [...searchKeys].every(key => bookObject[key] === query[key])
+            return searchKeys.every(key => bookObject[key] === query[key])
         });
     }
 
